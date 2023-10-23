@@ -1,14 +1,26 @@
+# https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs#defining-access-for-the-github_token-scopes
+
 name: Label Issues (Permissions Example)
 on:
   issues:
     types:
       - opened
+# Permissions can be applied at Workflow level
+# permissions:
+
 jobs:
   assign-label:
     runs-on: ubuntu-latest
+    # Permissions can be applied at Job level
+    permissions:
+      issues: write
     steps:
       - name: Assign label
         if: contains(github.event.issue.title, 'bug')
+        # https://docs.github.com/en/rest/issues/labels?apiVersion=2022-11-28
+        # by default, Workflow permissions are set to `Read repository contents and packages permissions`
+        # to make this example work, go to Repository > Settings > Actions > General > Workflow permissions
+        # then select `Read and write permissions`
         run: |
           curl -X POST \
           --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \

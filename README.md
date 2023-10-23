@@ -43,6 +43,26 @@ Example(s):
 Solution(s):
     - Only use trusted Actions and inspect code of unknown / untrusted authors
 ```
+### Using Actions Securely
+#### Only use your own Actions
+```
+Pros: Highest level of security
+Cons: Considerable amount of effort
+```
+#### Only use Actions by verified creators
+![Github Verified Creator](./images/GitHub-verified-creator.png)
+Look for `Creator verified by GitHub` check mark
+```
+Pros: Less amount of effort
+Cons: Still not a 100% guarantee
+```
+#### Use all public Actions
+```
+Pros: Solves most of the problems you might encounter
+Cons:
+  - Lowest level of security
+  - You must analyze the Action code first before using it
+```
 
 ## Permission Issues
 ```
@@ -52,3 +72,4 @@ Example(s):
 Solution(s):
     - GitHub Actions supports fine-grained permissions control
 ```
+[Assigning permissions to jobs](https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs)

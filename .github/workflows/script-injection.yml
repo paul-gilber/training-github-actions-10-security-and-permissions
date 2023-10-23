@@ -7,11 +7,31 @@ jobs:
   assign-label:
     runs-on: ubuntu-latest
     steps:
+      # Vulnerable Code
+      # - name: Assign label
+      #   run: |
+      #     issue_title="${{ github.event.issue.title }}"
+      #     if [[ "$issue_title" == *"bug"* ]]; then
+      #     echo "Issue is about a bug!"
+      #     else
+      #     echo "Issue is not about a bug"
+      #     fi
+
+      # Remediation Example 1: Use a trusted Github Action instead of defining your own step
+      # - name: Assign label
+      #   uses: trusted-action@vN
+      #   with:
+      #     title: ${{ github.event.issue.title }}
+
+      # Remediation Example 2: Use environment variable.
       - name: Assign label
-        run: |
-          issue_title="${{ github.event.issue.title }}"
-          if [[ "$issue_title" == *"bug"* ]]; then
+        env:
+          TITLE: ${{ github.event.issue.title }}
+        run:
+          if [[ "${{ env.TITLE }}" == *"bug"* ]]; then
           echo "Issue is about a bug!"
           else
           echo "Issue is not about a bug"
           fi
+
+      
